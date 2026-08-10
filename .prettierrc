@@ -9,6 +9,13 @@
         "printWidth": 100,
         "htmlWhitespaceSensitivity": "ignore"
       }
+    },
+    {
+      "files": ["**/*.css"],
+      "options": {
+        "printWidth": 80,
+        "htmlWhitespaceSensitivity": "css"
+      }
     }
   ]
 }
