@@ -249,12 +249,13 @@
   }
   .skip-to-main:focus {
     position: absolute;
+    top: 1rem;
+    left: 1rem;
     color: var(--text-high-contrast);
     background-color: var(--background-accent-main);
     padding: 0.5rem;
     text-decoration: none;
     border-radius: var(--border-radius-2);
-    opacity: 0.7;
   }
 
   .site-header {
