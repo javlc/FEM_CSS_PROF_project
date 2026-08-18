@@ -285,7 +285,10 @@
   }
 
   .site-header {
+    z-index: 99999999;
     padding-block: 1rem;
+    overflow-x: clip;
+    position: relative;
   }
   .site-header__inner {
     display: flex;
@@ -340,7 +343,21 @@
       ul {
         gap: 0;
         flex-direction: column;
-        
+
+        li {
+          --delay: 0.3s;
+          translate: 25%;
+          transition: translate 0.5s var(--delay), opacity 0.5s  var(--delay);
+        }
+
+        li:nth-child(2) {
+          --delay: 0.5s;
+        }
+
+        li:nth-child(3) {
+          --delay: 0.7s;
+        }
+                
         li + li {
           border-top: 2px solid var(--background-accent-light);
           padding-block-start: 1.5rem;
@@ -363,6 +380,16 @@
       @starting-style {
         opacity: 0;
         translate: 0 -100%;
+      }
+
+      li {
+        translate: 0 0;
+        opacity: 1;
+
+        @starting-style {
+          translate: 25% 0;
+          opacity: 0;
+        }
       }
     }
   }
