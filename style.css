@@ -1,3 +1,10 @@
+@view-transition {
+  navigation: auto;
+}
+/* ::view-transition-group(root) {
+  animation-duration: 1s;
+} */
+
 @layer reset {
   *,
   *::before,
@@ -198,11 +205,11 @@
     gap: var(--grid-flow-gap, 1rem);
   }
 
-  .grid-auto-fit {
-    --auto-fit-min-col-size: 250px;
+  .grid-auto-fill {
+    --auto-fill-min-col-size: 250px;
     display: grid;
     gap: var(--grid-flow-gap, 1rem);
-    grid-template-columns: repeat(auto-fit, minmax(min(var(--auto-fit-min-col-size), 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--auto-fill-min-col-size), 100%), 1fr));
   }
 
   .equal-columns {
@@ -314,6 +321,10 @@
 
     @media (width < 760px) {
       display: none;
+      opacity: 0;
+      transition: opacity 0.5s, display 0.5s, translate 0.5s;
+      transition-behavior: allow-discrete;
+      translate: 100% 0;
 
       z-index: 10;
       position: absolute;
@@ -340,12 +351,19 @@
   }
 
   @media (width < 760px) {
-    [aria-expanded="true"] + .primary-navigation {
+    [aria-controls="primary-nav"] {
       display: block;
     }
 
-    [aria-controls="primary-nav"] {
+    [aria-expanded="true"] ~ .primary-navigation {
       display: block;
+      opacity: 1;
+      translate: 0 0;
+
+      @starting-style {
+        opacity: 0;
+        translate: 0 -100%;
+      }
     }
   }
 
@@ -546,6 +564,10 @@
 }
 
 @layer utilities {
+
+  [hidden] {
+    display: none;
+  }
   .visually-hidden {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
